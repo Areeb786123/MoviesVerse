@@ -9,18 +9,20 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.areeb.moviesverse.R
 import com.areeb.moviesverse.ui.theme.MoviesVerseTheme
 import com.areeb.moviesverse.ui.utils.strings.CommonStrings.App.Companion.IMAGE
+import com.areeb.moviesverse.ui.utils.strings.CommonStrings.Navigations.Companion.HOME
+import kotlinx.coroutines.delay
 
-@Preview
 @Composable
-fun SplashScreen() {
+fun SplashScreen(navHostController: NavHostController) {
     MoviesVerseTheme() {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(
@@ -33,17 +35,13 @@ fun SplashScreen() {
                     contentDescription = IMAGE,
                 )
                 Spacer(modifier = Modifier.size(10.dp))
-//                Text(
-//                    text = "MoviesVerse",
-//                    modifier = Modifier.fillMaxWidth()
-//                        .scale(1.6f)
-//                        .animateContentSize(),
-//                    fontSize = 30.sp,
-//                    textAlign = TextAlign.Center,
-//                    fontStyle = FontStyle.Normal,
-//                    fontFamily = FontFamily.Default,
-//                )
+
                 NetflixIntroAnimation()
+
+                LaunchedEffect(key1 = Unit) {
+                    delay(2000)
+                    navHostController.navigate(HOME)
+                }
             }
         }
     }
