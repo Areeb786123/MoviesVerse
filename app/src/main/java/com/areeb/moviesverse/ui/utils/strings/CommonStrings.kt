@@ -14,4 +14,13 @@ interface CommonStrings {
             const val IMAGE = "image"
         }
     }
+
+    interface Navigations {
+        companion object {
+            const val SPLASH = "splash"
+            const val HOME = "home"
+            const val CATEGORY = "category"
+            const val SEARCH = "search"
+        }
+    }
 }

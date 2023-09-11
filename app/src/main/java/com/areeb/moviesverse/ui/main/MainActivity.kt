@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.res.colorResource
+import androidx.navigation.compose.rememberNavController
 import com.areeb.moviesverse.R
-import com.areeb.moviesverse.ui.splash.SplashScreen
+import com.areeb.moviesverse.ui.common.Navigations.NavigationHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +15,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val systemUiController = rememberSystemUiController()
             systemUiController.setStatusBarColor(colorResource(id = R.color.blood_red))
-            SplashScreen()
+            val navHostController = rememberNavController()
+            NavigationHost(navHostController = navHostController)
         }
     }
 }
