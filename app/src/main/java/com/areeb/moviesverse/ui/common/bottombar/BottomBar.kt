@@ -1,5 +1,6 @@
 package com.areeb.moviesverse.ui.common.bottombar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,25 +26,34 @@ fun BottomBar(navHostController: NavHostController) {
     val navBackStackEntry = navHostController.currentBackStackEntry
 
     Card(
-        modifier = Modifier.fillMaxWidth().padding(20.dp, 20.dp, 20.dp, 20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp, 20.dp, 20.dp, 20.dp),
         shape = RoundedCornerShape(16.dp),
     ) {
         NavigationBar(
             modifier = Modifier
                 .fillMaxWidth(),
-            containerColor = colorResource(id = R.color.grey),
-            contentColor = colorResource(id = R.color.white),
+            containerColor = colorResource(id = R.color.black),
+            contentColor = colorResource(id = R.color.black),
 
         ) {
             navigationList().forEach { item ->
                 val currentDestination = navBackStackEntry?.destination
                 NavigationBarItem(
+                    modifier = Modifier.background(colorResource(id = R.color.black)),
                     selected = item.route == currentDestination?.route,
                     onClick = {
                         navHostController.navigate(item.route)
                     },
                     icon = {
-                        Icon(imageVector = item.image, contentDescription = IMAGE)
+                        Icon(
+                            imageVector = item.image,
+                            contentDescription = IMAGE,
+                            tint = colorResource(
+                                id = R.color.grey,
+                            ),
+                        )
                     },
                 )
             }

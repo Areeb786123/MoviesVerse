@@ -10,4 +10,5 @@
     <color name="blood_red">#740202</color>
     <color name="light_red">#E91E63</color>
     <color name="grey">#B6B3B4</color>
+    <color name="glass_color">#80FFFFFF</color>
 </resources>

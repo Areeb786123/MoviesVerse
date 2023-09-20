@@ -5,7 +5,9 @@ interface CommonStrings {
     interface API {
         companion object {
             const val API_KEY =
-                "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYzNhZjJjYjc0ZmJiZmE1MDBlYzliYzhkYWE1NGZhMSIsInN1YiI6IjY0OGI0Njg0YzNjODkxMDBlYjMxNDM4NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QoDxOMLfPED6DPu2ypHgvza6uiQ0MFsCqU6-wW40PQU"
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYzNhZjJjYjc0ZmJiZmE1MDBlYzliYzhkYWE1NGZhMSIsInN1YiI6IjY0OGI0Njg0YzNjODkxMDBlYjMxNDM4NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QoDxOMLfPED6DPu2ypHgvza6uiQ0MFsCqU6-wW40PQU"
+
+            const val BASE_IMAGE_LOAD = "https://image.tmdb.org/t/p/w500/"
         }
     }
 
