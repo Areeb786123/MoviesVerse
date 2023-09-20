@@ -57,7 +57,7 @@ fun MoviesVerseTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = view.context.getColor(R.color.blood_red)
+            window.statusBarColor = view.context.getColor(R.color.black)
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

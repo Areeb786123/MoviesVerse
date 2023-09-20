@@ -103,6 +103,9 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
+    //Glide compose
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.5"
+
 }
 
 // Allow references to generated code

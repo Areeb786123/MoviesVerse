@@ -35,13 +35,13 @@ fun BottomBar(navHostController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth(),
             containerColor = colorResource(id = R.color.black),
-            contentColor = colorResource(id = R.color.blood_red),
+            contentColor = colorResource(id = R.color.black),
 
         ) {
             navigationList().forEach { item ->
                 val currentDestination = navBackStackEntry?.destination
                 NavigationBarItem(
-                    modifier = Modifier.background(colorResource(id = R.color.blood_red)),
+                    modifier = Modifier.background(colorResource(id = R.color.black)),
                     selected = item.route == currentDestination?.route,
                     onClick = {
                         navHostController.navigate(item.route)
@@ -51,7 +51,7 @@ fun BottomBar(navHostController: NavHostController) {
                             imageVector = item.image,
                             contentDescription = IMAGE,
                             tint = colorResource(
-                                id = R.color.black,
+                                id = R.color.grey,
                             ),
                         )
                     },
