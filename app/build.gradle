@@ -74,22 +74,34 @@ dependencies {
 
     //di
 
-    implementation "com.google.dagger:hilt-android:2.44.2"
-    kapt "com.google.dagger:hilt-compiler:2.44.2"
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
-    //viewModels and lifecycle
-    def lifecycle_version = "2.6.2"
-    def arch_version = "2.2.0"
-    // ViewModel utilities for Compose
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
-    // Lifecycle utilities for Compose
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+
+
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.19.0"
 
     //navigation
     def nav_version = "2.7.2"
 
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    def lifecycle_version = "2.6.1"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // ViewModel utilities for Compose
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    // Lifecycle utilities for Compose
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
 }
 
