@@ -1,6 +1,7 @@
 package com.areeb.moviesverse.di
 
 import com.areeb.moviesverse.data.ApiConstants.BASE_URL
+import com.areeb.moviesverse.data.BaseIntercepter.AppInterceptor
 import com.areeb.moviesverse.data.IRemoteOperations
 import com.areeb.moviesverse.data.RemoteOprations
 import com.areeb.moviesverse.data.network.remote.api.MovieApi
@@ -8,6 +9,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -18,8 +20,21 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL)
+    fun providesAppInterceptor(): AppInterceptor {
+        return AppInterceptor()
+    }
+
+    @Provides
+    @Singleton
+    fun providesHttpProfiler(appInterceptor: AppInterceptor): OkHttpClient {
+        val build = OkHttpClient.Builder().addInterceptor(appInterceptor).build()
+        return build
+    }
+
+    @Provides
+    @Singleton
+    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
