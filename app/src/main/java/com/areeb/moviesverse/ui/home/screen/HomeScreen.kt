@@ -32,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -90,6 +91,7 @@ private fun Intro() {
             text = "Watcher",
             fontFamily = FontFamily.Serif,
             fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.White,
             modifier = Modifier.padding(top = 32.dp, start = 2.dp),
         )
@@ -104,17 +106,18 @@ private fun GetNowPlayingList(
     Column {
         Row(modifier = Modifier.wrapContentWidth().wrapContentHeight()) {
             Text(
-                text = "Now",
+                text = "Up",
                 fontSize = 28.sp,
                 modifier = Modifier.padding(top = 10.dp, start = 10.dp),
-                fontFamily = FontFamily.SansSerif,
+                fontFamily = FontFamily.Monospace,
                 color = colorResource(
                     id = R.color.white,
                 ),
             )
 
             Text(
-                text = "Playing",
+                text = "Coming",
+                fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
                 modifier = Modifier.padding(top = 10.dp),
                 fontFamily = FontFamily.Monospace,
@@ -129,7 +132,7 @@ private fun GetNowPlayingList(
                 .fillMaxWidth()
                 .wrapContentHeight(),
         ) {
-            items(nowPlayingList.value) {
+            items(nowPlayingList.value.sortedByDescending { it.vote_average }) {
                 NowPlayingMovingList(it, navHostController)
             }
         }
