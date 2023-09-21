@@ -32,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,6 +42,7 @@ import com.areeb.moviesverse.data.models.request.nowPlaying.Result
 import com.areeb.moviesverse.ui.common.bottombar.BottomBar
 import com.areeb.moviesverse.ui.home.viewModels.HomeViewModels
 import com.areeb.moviesverse.ui.utils.strings.CommonStrings.API.Companion.BASE_IMAGE_LOAD
+import com.areeb.moviesverse.ui.utils.strings.CommonStrings.Navigations.Companion.DETAIL
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -64,7 +66,7 @@ fun HomeScreen(navHostController: NavHostController) {
                     .fillMaxWidth()
                     .padding(top = 20.dp),
             )
-            GetNowPlayingList(nowPlayingList)
+            GetNowPlayingList(nowPlayingList, navHostController)
         }
     }
 }
@@ -83,34 +85,39 @@ private fun Intro() {
             fontFamily = FontFamily.Monospace,
             fontSize = 18.sp,
             color = Color.White,
-            modifier = Modifier.padding(top= 32.dp, start = 10.dp),
+            modifier = Modifier.padding(top = 32.dp, start = 10.dp),
         )
         Text(
             text = "Watcher",
             fontFamily = FontFamily.Serif,
             fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier.padding(top= 32.dp, start = 2.dp),
+            modifier = Modifier.padding(top = 32.dp, start = 2.dp),
         )
     }
 }
 
 @Composable
-private fun GetNowPlayingList(nowPlayingList: State<List<Result>>) {
+private fun GetNowPlayingList(
+    nowPlayingList: State<List<Result>>,
+    navHostController: NavHostController,
+) {
     Column {
         Row(modifier = Modifier.wrapContentWidth().wrapContentHeight()) {
             Text(
-                text = "Now",
+                text = "Up",
                 fontSize = 28.sp,
                 modifier = Modifier.padding(top = 10.dp, start = 10.dp),
-                fontFamily = FontFamily.SansSerif,
+                fontFamily = FontFamily.Monospace,
                 color = colorResource(
                     id = R.color.white,
                 ),
             )
 
             Text(
-                text = "Playing",
+                text = "Coming",
+                fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
                 modifier = Modifier.padding(top = 10.dp),
                 fontFamily = FontFamily.Monospace,
@@ -125,16 +132,16 @@ private fun GetNowPlayingList(nowPlayingList: State<List<Result>>) {
                 .fillMaxWidth()
                 .wrapContentHeight(),
         ) {
-            items(nowPlayingList.value) {
-                NowPlayingMovingList(it)
+            items(nowPlayingList.value.sortedByDescending { it.vote_average }) {
+                NowPlayingMovingList(it, navHostController)
             }
         }
     }
 }
 
-@OptIn(ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun NowPlayingMovingList(result: Result) {
+fun NowPlayingMovingList(result: Result, navHostController: NavHostController) {
     Card(
         modifier = Modifier.padding(
             top = 30.dp,
@@ -142,6 +149,9 @@ fun NowPlayingMovingList(result: Result) {
             end = 16.dp,
             bottom = 120.dp,
         ).clip(RoundedCornerShape(12.dp)).fillMaxSize(),
+        onClick = {
+            navHostController.navigate("$DETAIL/${result.id}")
+        },
     ) {
         Box(
             modifier = Modifier

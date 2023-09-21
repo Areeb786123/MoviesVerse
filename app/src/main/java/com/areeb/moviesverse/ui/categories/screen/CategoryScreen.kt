@@ -2,6 +2,7 @@ package com.areeb.moviesverse.ui.categories.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -9,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.areeb.moviesverse.R
@@ -25,6 +28,12 @@ fun CategoryScreen(navHostController: NavHostController) {
         },
         containerColor = colorResource(id = R.color.black),
     ) {
-        Text(text = "categories", fontSize = 30.sp, color = Color.White)
+        Text(
+            text = "Categories",
+            fontSize = 30.sp,
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(top = 20.dp, start = 10.dp),
+        )
     }
 }

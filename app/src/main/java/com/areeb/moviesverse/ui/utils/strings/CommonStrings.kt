@@ -23,6 +23,7 @@ interface CommonStrings {
             const val HOME = "home"
             const val CATEGORY = "category"
             const val SEARCH = "search"
+            const val DETAIL = "detail"
         }
     }
 }

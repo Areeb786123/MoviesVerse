@@ -55,3 +55,5 @@ o
 ?app/src/main/java/com/areeb/moviesverse/data/RemoteOprations.kt,f/a/fa5467c40d5bd9bbfee6bab60aa83cd93113fc5e
 h
 8app/src/main/java/com/areeb/moviesverse/data/Resource.kt,3/6/36d2d42dd2399eab102551c1edcc6735af391055
+~
+Napp/src/main/java/com/areeb/moviesverse/data/BaseIntercepter/AppInterceptor.kt,b/4/b49d68eab19c6e5e40836c5bb7f71e0385cbb2e1

@@ -55,3 +55,5 @@ y
 Iapp/src/main/java/com/areeb/moviesverse/data/repository/NowPlayingRepo.kt,3/e/3ed447225074f3742651b55a9983b9ac2998e14c
 |
 Lapp/src/main/java/com/areeb/moviesverse/ui/home/viewModels/HomeViewModels.kt,1/7/17c582545ae6db89997774a6554c2b546a14cf80
+~
+Napp/src/main/java/com/areeb/moviesverse/data/BaseIntercepter/AppInterceptor.kt,b/4/b49d68eab19c6e5e40836c5bb7f71e0385cbb2e1
