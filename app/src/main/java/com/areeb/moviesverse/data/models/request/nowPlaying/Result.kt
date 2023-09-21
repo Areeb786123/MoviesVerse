@@ -1,5 +1,9 @@
 package com.areeb.moviesverse.data.models.request.nowPlaying
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Result(
     val adult: Boolean,
     val backdrop_path: String,
@@ -14,5 +18,5 @@ data class Result(
     val title: String,
     val video: Boolean,
     val vote_average: Double,
-    val vote_count: Int
-)
+    val vote_count: Int,
+) :Parcelable
