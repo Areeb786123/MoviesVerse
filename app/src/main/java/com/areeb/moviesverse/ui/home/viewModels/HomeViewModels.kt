@@ -28,7 +28,7 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
         getNowPlaying()
     }
 
-    fun getNowPlaying() {
+    private fun getNowPlaying() {
         viewModelScope.launch {
             nowPlayingRepo.getAllNowPlayingMovies().collectLatest {
                 getNowPlayingResponse(it)
@@ -37,6 +37,7 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
     }
 
     private fun getNowPlayingResponse(resource: Resource<NowPlaying>) {
+        Log.e("xxx", resource.toString())
         when (resource) {
             is Resource.Success -> {
                 _nowPlaying.value = resource.data.results
