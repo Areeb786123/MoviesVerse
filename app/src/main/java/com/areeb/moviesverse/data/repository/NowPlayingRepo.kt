@@ -16,10 +16,11 @@ class NowPlayingRepo @Inject constructor(val remoteOperations: RemoteOprations) 
         private const val TAG = "NowPlayingRepo"
     }
 
-    suspend fun getAllNowPlayingMovies(): Flow<Resource<NowPlaying>> {
+    fun getAllNowPlayingMovies(): Flow<Resource<NowPlaying>> {
         return flow {
             try {
                 val response = remoteOperations.getAllMovies()
+                Log.e("emoioz", response.toString())
                 emit(response)
             } catch (e: Exception) {
                 Log.e(TAG, e.message.toString())
