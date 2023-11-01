@@ -10,6 +10,10 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontStyle
@@ -17,7 +21,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.areeb.moviesverse.R
+import com.areeb.moviesverse.ui.home.viewModels.HomeViewModels
 
 @Composable
 fun FilterDialog(showDialog: (Boolean) -> Unit) {
@@ -46,15 +52,26 @@ fun FilterDialog(showDialog: (Boolean) -> Unit) {
 
 @Composable
 fun FilterRadioGroup(option: List<String>) {
-    Surface(modifier = Modifier.padding(20.dp).fillMaxWidth()) {
-        var selected = 0
+    val homeViewModels: HomeViewModels = hiltViewModel()
+    Surface(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxWidth(),
+    ) {
+        var selected by remember { mutableStateOf(0) }
         Column {
-            option.forEach {
+            option.forEachIndexed { index, text ->
                 Row {
-                    RadioButton(selected = false, onClick = { /*TODO*/ })
+                    RadioButton(
+                        selected = selected == index,
+                        onClick = {
+                            selected = index
+                            homeViewModels.getNowPlaying(index)
+                        },
+                    )
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        text = it,
+                        text = text,
                         fontSize = 20.sp,
                         fontStyle = FontStyle.Normal,
                         modifier = Modifier.padding(top = 10.dp),

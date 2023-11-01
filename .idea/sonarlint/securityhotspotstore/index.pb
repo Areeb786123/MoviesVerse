@@ -57,3 +57,11 @@ Iapp/src/main/java/com/areeb/moviesverse/data/repository/NowPlayingRepo.kt,3/e/
 Lapp/src/main/java/com/areeb/moviesverse/ui/home/viewModels/HomeViewModels.kt,1/7/17c582545ae6db89997774a6554c2b546a14cf80
 ~
 Napp/src/main/java/com/areeb/moviesverse/data/BaseIntercepter/AppInterceptor.kt,b/4/b49d68eab19c6e5e40836c5bb7f71e0385cbb2e1
+y
+Iapp/src/main/java/com/areeb/moviesverse/ui/detail/screens/DetailScreen.kt,7/9/79c8193a9a1ef147718a66a83decf8f64a7c7bd4
+y
+Iapp/src/main/java/com/areeb/moviesverse/ui/common/progress/progressBar.kt,2/9/298f44b595426b8ffc20d09cb511701dfb7c5570
+t
+Dapp/src/main/java/com/areeb/moviesverse/ui/home/screen/moviesData.kt,f/c/fc41598a5ea079dc19ca003c6455acd88a2967bc
+v
+Fapp/src/main/java/com/areeb/moviesverse/ui/home/dialog/filterDialog.kt,e/e/ee833454b9e8eae6c111fab0267d377668e59bc0

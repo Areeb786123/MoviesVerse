@@ -28,19 +28,18 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
         getNowPlaying()
     }
 
-    private fun getNowPlaying() {
+    fun getNowPlaying(filteration: Int = 0) {
         viewModelScope.launch {
             nowPlayingRepo.getAllNowPlayingMovies().collectLatest {
-                getNowPlayingResponse(it)
+                getNowPlayingResponse(it, filteration)
             }
         }
     }
 
-    private fun getNowPlayingResponse(resource: Resource<NowPlaying>) {
-        Log.e("xxx", resource.toString())
+    private fun getNowPlayingResponse(resource: Resource<NowPlaying>, filteration: Int) {
         when (resource) {
             is Resource.Success -> {
-                _nowPlaying.value = resource.data.results
+                _nowPlaying.value = sortData(resource.data.results, filteration)
             }
 
             is Resource.Error -> {
@@ -51,5 +50,24 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
                 Log.e(TAG, "some error occur")
             }
         }
+    }
+
+    private fun sortData(results: List<Result>, filteration: Int): List<Result> {
+        var result: List<Result>
+        when (filteration) {
+            0 -> {
+                result = results.sortedByDescending { it.vote_average }
+            }
+
+            1 -> {
+                result = results.sortedByDescending { it.release_date }
+            }
+
+            else -> {
+                result = results.sortedByDescending { it.popularity }
+            }
+        }
+
+        return result
     }
 }
