@@ -28,9 +28,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.areeb.moviesverse.R
 import com.areeb.moviesverse.data.models.request.categories.CategoriesDto
+import com.areeb.moviesverse.ui.home.viewModels.HomeViewModels
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -42,6 +45,8 @@ fun CategoryScreen(navHostController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         containerColor = colorResource(id = R.color.black),
     ) {
+        val viewModels: HomeViewModels = hiltViewModel()
+        viewModels.getMoviesByCategories()
         Column() {
             Text(
                 text = "Categories",
@@ -71,8 +76,11 @@ private fun CategoryListInitilizer() {
 @Composable
 private fun AddingCategoryValues(category: CategoriesDto) {
     Card(
-        modifier = Modifier.padding(top = 14.dp, start = 10.dp, end = 10.dp, bottom = 10.dp)
-            .fillMaxWidth().height(120.dp).clip(
+        modifier = Modifier
+            .padding(top = 14.dp, start = 10.dp, end = 10.dp, bottom = 10.dp)
+            .fillMaxWidth()
+            .height(120.dp)
+            .clip(
                 RoundedCornerShape(12.dp),
             ),
 
@@ -82,14 +90,19 @@ private fun AddingCategoryValues(category: CategoriesDto) {
                 model = category.imgUrl,
                 contentDescription = "image",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.graphicsLayer(alpha = 90.5f).alpha(90.5f),
+                modifier = Modifier
+                    .graphicsLayer(alpha = 90.5f)
+                    .alpha(90.5f),
             ) {
                 it.load(category.imgUrl)
             }
 
             Text(
                 text = category.title,
-                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(10.dp),
                 fontWeight = FontWeight.Bold,
                 fontSize = 60.sp,
                 color = colorResource(id = R.color.white),

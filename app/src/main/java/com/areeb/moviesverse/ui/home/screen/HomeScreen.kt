@@ -50,7 +50,7 @@ fun HomeScreen(navHostController: NavHostController) {
                     .fillMaxWidth()
                     .padding(top = 20.dp),
             )
-            GetNowPlayingList(nowPlayingList,navHostController)
+            GetNowPlayingList(nowPlayingList, navHostController)
         }
     }
 }

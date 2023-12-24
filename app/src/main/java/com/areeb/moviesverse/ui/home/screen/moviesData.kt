@@ -36,6 +36,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -167,7 +168,16 @@ fun NowPlayingMovingList(result: Result, navHostController: NavHostController) {
             ) {
                 it.load("${CommonStrings.API.BASE_IMAGE_LOAD}${result.poster_path}")
             }
-            Text(text = result.title)
+            Text(
+                text = result.title,
+                modifier = Modifier.fillMaxWidth().align(Alignment.BottomStart).padding(bottom = 10.dp, start = 10.dp),
+                textAlign = TextAlign.Start,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = colorResource(
+                    id = R.color.white,
+                ),
+            )
         }
     }
 }

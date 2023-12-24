@@ -1,3 +1,4 @@
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +12,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -50,6 +49,7 @@ fun FilterDialog(showDialog: (Boolean) -> Unit) {
     }
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun FilterRadioGroup(option: List<String>) {
     val homeViewModels: HomeViewModels = hiltViewModel()
@@ -58,15 +58,15 @@ fun FilterRadioGroup(option: List<String>) {
             .padding(20.dp)
             .fillMaxWidth(),
     ) {
-        var selected by remember { mutableStateOf(0) }
+        var selected = homeViewModels.filterIndex.value
         Column {
             option.forEachIndexed { index, text ->
                 Row {
                     RadioButton(
                         selected = selected == index,
                         onClick = {
-                            selected = index
                             homeViewModels.getNowPlaying(index)
+                            homeViewModels.setMutableStateFlow(index)
                         },
                     )
                     Spacer(modifier = Modifier.width(10.dp))

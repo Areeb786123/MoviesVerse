@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.areeb.moviesverse.data.Resource
-import com.areeb.moviesverse.data.models.request.nowPlaying.NowPlaying
+import com.areeb.moviesverse.data.models.request.nowPlaying.Movies
 import com.areeb.moviesverse.data.models.request.nowPlaying.Result
 import com.areeb.moviesverse.data.repository.NowPlayingRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +20,18 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
     private val _nowPlaying = MutableStateFlow<List<Result>>(emptyList())
     val nowPlaying: StateFlow<List<Result>> get() = _nowPlaying
 
+    private val _moviesByCategories = MutableStateFlow<List<Movies>>(emptyList())
+    val moviesByCategory: StateFlow<List<Movies>> get() = _moviesByCategories
+
+    private val _filterIndex = MutableStateFlow<Int>(0)
+    val filterIndex: StateFlow<Int> = _filterIndex
+
     companion object {
         private const val TAG = "HomeViewModels"
+    }
+
+    fun setMutableStateFlow(index: Int) {
+        _filterIndex.value = index
     }
 
     init {
@@ -36,7 +46,17 @@ class HomeViewModels @Inject constructor(private val nowPlayingRepo: NowPlayingR
         }
     }
 
-    private fun getNowPlayingResponse(resource: Resource<NowPlaying>, filteration: Int) {
+    fun getMoviesByCategories() {
+        viewModelScope.launch {
+            // refactor it for action and other stuff check from moviesDB api
+            nowPlayingRepo.getMoviesByCategories("drama".lowercase())
+                .collectLatest {
+                    Log.e("areebxx", it.toString())
+                }
+        }
+    }
+
+    private fun getNowPlayingResponse(resource: Resource<Movies>, filteration: Int) {
         when (resource) {
             is Resource.Success -> {
                 _nowPlaying.value = sortData(resource.data.results, filteration)

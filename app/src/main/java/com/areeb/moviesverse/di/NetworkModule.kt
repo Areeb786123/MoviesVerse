@@ -3,7 +3,7 @@ package com.areeb.moviesverse.di
 import com.areeb.moviesverse.data.ApiConstants.BASE_URL
 import com.areeb.moviesverse.data.BaseIntercepter.AppInterceptor
 import com.areeb.moviesverse.data.IRemoteOperations
-import com.areeb.moviesverse.data.RemoteOprations
+import com.areeb.moviesverse.data.RemoteOperations
 import com.areeb.moviesverse.data.network.remote.api.MovieApi
 import dagger.Module
 import dagger.Provides
@@ -47,6 +47,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providesRemoteOperation(movieApi: MovieApi): IRemoteOperations {
-        return RemoteOprations(movieApi)
+        return RemoteOperations(movieApi)
     }
 }
